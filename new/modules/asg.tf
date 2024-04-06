@@ -6,6 +6,9 @@ resource "aws_launch_template" "webserver_launch_template" {
   instance_type = var.ec2_instance_type
   key_name      = aws_key_pair.bade-key.key_name
   description   = "webserver launch template"
+  iam_instance_profile {
+     name = aws_iam_instance_profile.bade_profile.name
+  }
 
   monitoring {
     enabled = true
@@ -17,6 +20,7 @@ resource "aws_launch_template" "webserver_launch_template" {
 # create auto scaling group
 # terraform aws autoscaling group
 resource "aws_autoscaling_group" "auto_scaling_group" {
+  count = length(var.privateapp_subnets)
   vpc_zone_identifier = element([aws_subnet.private_app_subnetAZ.*.id, count.index])
   desired_capacity    = 2
   max_size            = 4

@@ -10,7 +10,8 @@ provider "aws" {
 
 
 resource "aws_s3_bucket" "rentzone-app" {
-    bucket = "rentzone-app-remote-state"
+    bucket = "rentzone-app"
+        
       force_destroy = true
     lifecycle {
       prevent_destroy = false
@@ -22,6 +23,14 @@ resource "aws_s3_bucket" "rentzone-app" {
     }
 
    
+}
+
+resource "aws_s3_bucket_public_access_block" "some_bucket_access" {
+  bucket = aws_s3_bucket.rentzone-app.id
+
+  block_public_acls   = true
+  block_public_policy = true
+  ignore_public_acls  = true
 }
 
 # terraform {
