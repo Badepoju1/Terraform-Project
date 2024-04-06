@@ -1,4 +1,4 @@
-# Account keys Declaration
+# Account keys Variable Declaration
 
 variable "access_key" {
   description = "AWS Region Infrasture Provisioning"
@@ -12,7 +12,7 @@ variable "secret_key" {
  
 }
 
-#Region Variable Declartion
+#Region Variable Declaration
 variable "region" {
   description = "AWS Region Infrasture Provisioning"
   type        = string
@@ -46,7 +46,7 @@ variable "availability_zones" {
   type        = list(string)
   }
 
-# Subnet CIDR Block Variable Declaration
+# Subnet CIDR Block variable Declaration
 
 variable "subnet_cidr_blocks" {
   description = "List of Subnet CIDR Block"
@@ -61,7 +61,7 @@ variable "sg_ids" {
 }
 
 
-# Subnets IDs Variable Declaration
+# Subnets IDs variable Declaration
 
 variable "public_subnets" {
   description = "List of public subnet IDs"
@@ -82,7 +82,7 @@ variable "privatedata_subnets" {
 }
 
 
-# Gateways IDs Variable Declaration 
+# Gateways IDs variable Declaration 
 
 variable "gateway_ids" {
   description = "List of NAT Gateways."
@@ -94,7 +94,7 @@ variable "gateway_ids" {
 
 # Route Tables IDS Variable Declaration
 
-variable "rtables-ids" {
+variable "rtables_ids" {
   description = "List of All Route Tables IDs"
   type        = list(string)
   
@@ -121,11 +121,7 @@ variable "ec2_instance_type" {
   
 }
 
-variable "ec2_key_name" {
-  description = "ec2 Key Name"
-  type        = string
-  
-}
+
 
 # Database Variable declaration
 variable "dbsubnet-name" {
