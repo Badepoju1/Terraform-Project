@@ -30,16 +30,4 @@ resource "aws_s3_bucket_public_access_block" "some_bucket_access" {
 
   block_public_acls   = true
   block_public_policy = true
-  ignore_public_acls  = true
-}
-
-# terraform {
-#   backend "s3" {
-#     bucket = "[rentzone_app]--[us-east-1a]--x-s3"
-#     key = "rentzone-app/terraform.tfstate"
-#     region = "us-east-1"
-#     dynamodb_table = "terraform-state-lock"
-#     profile = "default"
-
-#   }
-# }
+ }
