@@ -4,9 +4,9 @@ resource "aws_lb" "bade-alb" {
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.alb-sg.id]
-  subnets                    = element([aws_subnet.public-subnetAZ.*.id], count.index)
+  subnets                    = var.public_subnets
   enable_deletion_protection = false
-
+  
 
   tags = {
     Environment = "freetier"
@@ -20,7 +20,7 @@ resource "aws_lb" "bade-alb" {
 resource "aws_lb_target_group" "bade-tg" {
   port     = 80
   protocol = "HTTP"
-  vpc_id   = [aws_vpc.badeVPC.id]
+  vpc_id   = aws_vpc.badevpc.id
   target_type = "instance"
   target_health_state {
     enable_unhealthy_connection_termination = "false"

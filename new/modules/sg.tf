@@ -3,7 +3,7 @@
 resource "aws_security_group" "ssh-sg" {
   name        = "allow_web_traffic"
   description = "Allow inbound traffic and all outbound traffic"
-  vpc_id      = [aws_vpc.badevpc.id]
+  vpc_id      = var.vpc-id
 
 
   ingress {
@@ -29,7 +29,7 @@ resource "aws_security_group" "ssh-sg" {
 resource "aws_security_group" "alb-sg" {
   name        = "allow_web_traffice"
   description = "Allow inbound traffic and all outbound traffic"
-  vpc_id      = [aws_vpc.badevpc.id]
+  vpc_id      = var.vpc-id
 
   ingress {
     description = "HTTPS"
@@ -63,7 +63,7 @@ resource "aws_security_group" "alb-sg" {
 resource "aws_security_group" "webserver-sg" {
   name        = "allow_web_traffice"
   description = "Allow inbound traffic and all outbound traffic"
-  vpc_id      = [aws_vpc.badevpc.id]
+  vpc_id      = var.vpc-id
 
   ingress {
     description = "HTTPS"
@@ -106,14 +106,14 @@ resource "aws_security_group" "webserver-sg" {
 resource "aws_security_group" "db-sg" {
   name        = "allow_web_traffice"
   description = "Allow inbound traffic and all outbound traffic"
-  vpc_id      = [aws_vpc.badevpc.id]
+  vpc_id      = var.vpc-id
 
   ingress {
     description = "MYSQL/Aurora"
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.alb.sg.id]
+    cidr_blocks = [aws_security_group.alb-sg.id]
   }
 
 
@@ -122,7 +122,7 @@ resource "aws_security_group" "db-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.ssh.sg.id]
+    cidr_blocks = [aws_security_group.ssh-sg.id]
   }
 
   egress {

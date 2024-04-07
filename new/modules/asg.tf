@@ -14,14 +14,13 @@ resource "aws_launch_template" "webserver_launch_template" {
     enabled = true
   }
 
-  vpc_security_group_ids = [aws_security_group.webserver_sg.id]
+  vpc_security_group_ids = [aws_security_group.webserver-sg.id]
 }
 
 # create auto scaling group
 # terraform aws autoscaling group
 resource "aws_autoscaling_group" "auto_scaling_group" {
-  count = length(var.privateapp_subnets)
-  vpc_zone_identifier = element([aws_subnet.private_app_subnetAZ.*.id, count.index])
+  vpc_zone_identifier = var.privateapp_subnets
   desired_capacity    = 2
   max_size            = 4
   min_size            = 1
@@ -50,18 +49,3 @@ resource "aws_autoscaling_attachment" "asg_alb_target_group_attachment" {
   autoscaling_group_name = aws_autoscaling_group.auto_scaling_group.id
   lb_target_group_arn    = aws_lb_target_group.bade-tg.arn
 }
-
-# create an auto scaling group notification
-# terraform aws autoscaling notification
-# resource "aws_autoscaling_notification" "webserver_asg_notifications" {
-#   group_names = [aws_autoscaling_group.auto_scaling_group.name]
-
-#   notifications = [
-#     "autoscaling:EC2_INSTANCE_LAUNCH",
-#     "autoscaling:EC2_INSTANCE_TERMINATE",
-#     "autoscaling:EC2_INSTANCE_LAUNCH_ERROR",
-#     "autoscaling:EC2_INSTANCE_TERMINATE_ERROR",
-#   ]
-
-#   topic_arn = aws_sns_topic.user_updates.arn
-# }

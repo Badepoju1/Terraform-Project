@@ -5,7 +5,7 @@ resource "aws_route_table" "public-rt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = element(var.gateway_ids, 2)
+    gateway_id = aws_internet_gateway.public-igw.id
   }
 
   tags = {

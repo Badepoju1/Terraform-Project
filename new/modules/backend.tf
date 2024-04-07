@@ -25,7 +25,7 @@ resource "aws_s3_bucket" "rentzone-app" {
    
 }
 
-resource "aws_s3_bucket_public_access_block" "some_bucket_access" {
+resource "aws_s3_bucket_public_access_block" "bade_bucket_access" {
   bucket = aws_s3_bucket.rentzone-app.id
 
   block_public_acls   = true

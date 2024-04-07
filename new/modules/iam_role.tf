@@ -57,7 +57,7 @@ resource "aws_instance" "web_instances" {
   ami           = "ami-03ab7423a204da002"
   instance_type = "t2.micro"
 
-  iam_instance_profile = aws_iam_instance_profile.some_profile.id
+  iam_instance_profile = aws_iam_instance_profile.bade_profile.id
 }
 
 

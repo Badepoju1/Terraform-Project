@@ -5,7 +5,7 @@ resource "aws_route_table" "private-data-rt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = element(var.gateway_ids, 1)
+    nat_gateway_id = element(var.nat-gw, 1)
   }
 
   tags = {

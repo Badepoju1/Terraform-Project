@@ -33,10 +33,8 @@ variable "vpc_cidr_block" {
 
 variable "vpc-id" {
   description = "VPC ID"
-  type        = string
-
-
-  }
+  type = string
+ }
 
 
 # Availablity Zone Variable Declaration
@@ -51,15 +49,7 @@ variable "availability_zones" {
 variable "subnet_cidr_blocks" {
   description = "List of Subnet CIDR Block"
   type        = list(string)
-  }
-# Security Groups IDs Variable Declaration
-
-variable "sg_ids" {
-  description = "List of ALL Security Groups IDs"
-  type        = list(string)
-  
 }
-
 
 # Subnets IDs variable Declaration
 
@@ -82,24 +72,13 @@ variable "privatedata_subnets" {
 }
 
 
-# Gateways IDs variable Declaration 
+# NAT Gateways IDs variable Declaration 
 
-variable "gateway_ids" {
+variable "nat-gw" {
   description = "List of NAT Gateways."
   type        = list(string)
   
 }
-
-
-
-# Route Tables IDS Variable Declaration
-
-variable "rtables_ids" {
-  description = "List of All Route Tables IDs"
-  type        = list(string)
-  
-}
-
 
 # Auto Scaling Variable Declaration
 

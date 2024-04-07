@@ -5,7 +5,7 @@ resource "aws_route_table" "private-app-rt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = element(var.gateway_ids, 0)
+    nat_gateway_id = element(var.nat-gw, 0)
   }
 
   tags = {
