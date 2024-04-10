@@ -23,6 +23,6 @@ resource "aws_route_table_association" "privateapp_rta" {
 }
 
 output "privateapp_subnets" {
-    value = [aws_subnet.private-app-subnetAZ.id]
+    value = aws_subnet.private-app-subnetAZ[*].id
   
 }

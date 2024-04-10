@@ -23,6 +23,6 @@ resource "aws_route_table_association" "public-rta" {
 }
 
 output "public_subnets" {
-    value = [aws_subnet.public-subnetAZ.id]
+    value = aws_subnet.public-subnetAZ[*].id
   
 }

@@ -24,6 +24,6 @@ resource "aws_nat_gateway" "nat-gw" {
 }
 
 output "nat-gw" {
-    value = aws_nat_gateway.nat-gw.public_ip
+    value = aws_nat_gateway.nat-gw[*].public_ip
   
 }
