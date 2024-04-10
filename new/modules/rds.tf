@@ -4,7 +4,7 @@
 
 resource "aws_db_subnet_group" "db-subnet-group" {
     name = var.dbsubnet-name
-    subnet_ids = var.privatedata_subnets
+    subnet_ids = slice([aws_subnet.private-data-subnetAZ.*.id], 0, 1)
     description = "Subnet specification for database instance"
   
 }

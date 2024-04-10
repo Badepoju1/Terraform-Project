@@ -1,6 +1,5 @@
 module "main-config" {
     source = "./modules"
-    vpc-id = var.vpc-id
     public_subnets = var.public_subnets
     privateapp_subnets = var.privateapp_subnets
     privatedata_subnets = var.privatedata_subnets
@@ -20,11 +19,12 @@ module "main-config" {
     ec2_image_id = var.ec2_image_id
     ec2_instance_type = var.ec2_instance_type
     subnet_cidr_blocks = var.subnet_cidr_blocks
-
 }
 
-resource "aws_s3_bucket_object" "reantzone_object" {
-  bucket = aws_s3_bucket.rentzone-app.arn
+
+
+resource "aws_s3_bucket_object" "rentzone_object" {
+  bucket = aws_s3_bucket.rentzone-app.id
   key    = "rentzone.zip"
   source = "/Terraform-Project/new/rentzone.zip"
 }

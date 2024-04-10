@@ -4,7 +4,7 @@ resource "aws_lb" "bade-alb" {
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.alb-sg.id]
-  subnets                    = var.public_subnets
+  subnets                    = slice([aws_subnet.public-subnetAZ.*.id], 0, 1)
   enable_deletion_protection = false
   
 
@@ -57,4 +57,8 @@ resource "aws_lb_listener" "HTTPL" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.bade-tg.arn
   }
+}
+
+output "alb-ip" {
+    value = aws_lb.bade-alb.dns_name
 }

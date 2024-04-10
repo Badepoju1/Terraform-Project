@@ -1,9 +1,9 @@
 # Public Subnet Module Configuration
 
 resource "aws_subnet" "public-subnetAZ" {
-  count             = length(var.availability_zones)
+  count             = length(var.public_subnets)
   cidr_block        = slice(var.subnet_cidr_blocks, 0, 1)[count.index]
-  vpc_id            = var.vpc-id
+  vpc_id            = aws_vpc.badevpc.id
   availability_zone = slice(var.availability_zones, 0, 1)[count.index]
   map_public_ip_on_launch = true
 
@@ -16,9 +16,9 @@ resource "aws_subnet" "public-subnetAZ" {
 # Private App Subnet Module Configuration
 
 resource "aws_subnet" "private-app-subnetAZ" {
-  count             = length(var.availability_zones)
+  count             = length(var.privateapp_subnets)
   cidr_block        = slice(var.subnet_cidr_blocks, 2, 3)[count.index]
-  vpc_id            = var.vpc-id
+  vpc_id            = aws_vpc.badevpc.id
   availability_zone = slice(var.availability_zones, 0, 1)[count.index]
   map_public_ip_on_launch = false
 
@@ -31,9 +31,9 @@ resource "aws_subnet" "private-app-subnetAZ" {
 # Private Data Subnet Module Configuration
 
 resource "aws_subnet" "private-data-subnetAZ" {
-  count             = length(var.availability_zones)
+  count             = length(var.privatedata_subnets)
   cidr_block        = slice(var.subnet_cidr_blocks, 4, 5)[count.index]
-  vpc_id            = var.vpc-id
+  vpc_id            = aws_vpc.badevpc.id
   availability_zone = slice(var.availability_zones, 0, 1)[count.index]
   map_public_ip_on_launch = false
 

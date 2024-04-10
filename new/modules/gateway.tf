@@ -14,8 +14,8 @@ resource "aws_eip" "nat-eip" {
 resource "aws_nat_gateway" "nat-gw" {
   
   allocation_id = aws_eip.nat-eip.id
-  count = length(var.availability_zones)
-  subnet_id     = slice(aws_subnet.public-subnetAZ.*.id, 0, 1)
+  count = length(var.nat-gw)
+  subnet_id     = aws_subnet.private-app-subnetAZ[count.index].id
   depends_on = [ aws_internet_gateway.public-igw ]
 
   tags = {
@@ -23,3 +23,7 @@ resource "aws_nat_gateway" "nat-gw" {
   }
 }
 
+output "nat-gw" {
+    value = aws_nat_gateway.nat-gw.public_ip
+  
+}

@@ -12,10 +12,14 @@ resource "aws_vpc" "badevpc" {
 # # AWS  Gateway Configuration
 
 resource "aws_internet_gateway" "public-igw" {
-   vpc_id = var.vpc-id
+   vpc_id = aws_vpc.badevpc.id
   
   tags = {
     Name = "public-igw"
   }
 
+}
+
+output "vpc-id" {
+    value = [aws_vpc.badevpc.id]
 }

@@ -1,29 +1,33 @@
 # Output Declarat
 
 output "vpc-id" {
-    value = [aws_vpc.badevpc.id]
+    value = module.main-config.vpc-id   
 }
 
 output "public_subnets" {
-    value = [aws_subnet.public-subnetAZ.id]
+    value = module.main-config.public_subnets
   
 }
 
 output "privateapp_subnets" {
-    value = [aws_subnet.private-app-subnetAZ.id]
+    value = module.main-config.privateapp_subnets
   
 }
 
 output "privatedata_subnets" {
-    value = [aws_subnet.private-data-subnetAZ.id]
+    value = module.main-config.privatedata_subnets
   
 }
 
 output "nat-gw" {
-    value = [aws_nat_gateway.nat-gw.id]
+    value = module.main-config.nat-gw
   
 }
 
 output "s3_bucket" {
-  value = [aws_s3_bucket.rentzone-app.arn]
+  value = module.main-config.s3_bucket
+}
+
+output "alb-ip" {
+    value = module.main-config.alb-ip
 }

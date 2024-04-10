@@ -29,13 +29,6 @@ variable "vpc_cidr_block" {
   
 }
 
-#VPC ID Declaration
-
-variable "vpc-id" {
-  description = "VPC ID"
-  type = string
- }
-
 
 # Availablity Zone Variable Declaration
 
