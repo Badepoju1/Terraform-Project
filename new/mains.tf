@@ -10,8 +10,6 @@ module "main-config" {
     db_pass = var.db_pass
     db_username = var.db_username
     nat-gw = var.nat-gw
-    access_key = var.access_key
-    secret_key = var.access_key
     vpc_cidr_block = var.vpc_cidr_block
     region = var.region
     launch_template_name = var.launch_template_name
@@ -19,12 +17,5 @@ module "main-config" {
     ec2_image_id = var.ec2_image_id
     ec2_instance_type = var.ec2_instance_type
     subnet_cidr_blocks = var.subnet_cidr_blocks
-}
 
-
-
-resource "aws_s3_bucket_object" "rentzone_object" {
-  bucket = aws_s3_bucket.rentzone-app.id
-  key    = "rentzone.zip"
-  source = "/Terraform-Project/new/rentzone.zip"
-}
+  }

@@ -4,7 +4,11 @@
 
 resource "aws_db_subnet_group" "db-subnet-group" {
     name = var.dbsubnet-name
-    subnet_ids = slice([aws_subnet.private-data-subnetAZ.*.id], 0, 1)
+    subnet_ids = [
+    aws_subnet.private-data-subnetAZ[0].id,  # Subnet in the first availability zone
+    aws_subnet.private-data-subnetAZ[1].id,  # Subnet in the second availability zone
+    # Add more subnets as needed for additional availability zones
+  ]
     description = "Subnet specification for database instance"
   
 }

@@ -70,7 +70,7 @@ resource "aws_security_group" "webserver-sg" {
     from_port   = 433
     to_port     = 433
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.alb-sg.id]
+   security_groups = [aws_security_group.alb-sg.id]
   }
 
   ingress {
@@ -78,7 +78,7 @@ resource "aws_security_group" "webserver-sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.alb-sg.id]
+    security_groups = [aws_security_group.alb-sg.id]
   }
 
 
@@ -87,7 +87,7 @@ resource "aws_security_group" "webserver-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.ssh-sg.id]
+    security_groups = [aws_security_group.ssh-sg.id]
   }
 
   egress {
@@ -107,13 +107,14 @@ resource "aws_security_group" "db-sg" {
   name        = "allow_web_traffice"
   description = "Allow inbound traffic and all outbound traffic"
   vpc_id      = aws_vpc.badevpc.id
+  
 
   ingress {
     description = "MYSQL/Aurora"
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.alb-sg.id]
+    security_groups = [aws_security_group.alb-sg.id]
   }
 
 
@@ -122,7 +123,7 @@ resource "aws_security_group" "db-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [aws_security_group.ssh-sg.id]
+    security_groups = [aws_security_group.ssh-sg.id]
   }
 
   egress {

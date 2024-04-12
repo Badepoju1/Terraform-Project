@@ -3,14 +3,13 @@
 
 provider "aws" {
   region     = var.region
-  access_key = var.access_key
-  secret_key = var.secret_key
+  profile = "bade"
  
 }
 
 
 resource "aws_s3_bucket" "rentzone-app" {
-    bucket = "rentzone-app"
+    bucket = "app-rentzone"
         
       force_destroy = true
     lifecycle {

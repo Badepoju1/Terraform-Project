@@ -4,7 +4,11 @@ resource "aws_lb" "bade-alb" {
   internal                   = false
   load_balancer_type         = "application"
   security_groups            = [aws_security_group.alb-sg.id]
-  subnets                    = slice([aws_subnet.public-subnetAZ.*.id], 0, 1)
+  subnets = [
+    aws_subnet.public-subnetAZ[0].id,  # Subnet in the first availability zone
+    aws_subnet.public-subnetAZ[1].id,  # Subnet in the second availability zone
+    # Add more subnets as needed for additional availability zones
+  ]
   enable_deletion_protection = false
   
 

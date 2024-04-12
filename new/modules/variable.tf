@@ -1,16 +1,4 @@
-# Account keys Variable Declaration
 
-variable "access_key" {
-  description = "AWS Region Infrasture Provisioning"
-  type        = string
- 
-}
-
-variable "secret_key" {
-  description = "AWS Region Infrasture Provisioning"
-  type        = string
- 
-}
 
 #Region Variable Declaration
 variable "region" {
@@ -48,19 +36,19 @@ variable "subnet_cidr_blocks" {
 
 variable "public_subnets" {
   description = "List of public subnet IDs"
-  type        = list(string)
+ 
   
 }
 
 variable "privateapp_subnets" {
   description = "List of private app subnet IDs"
-  type        = list(string)
+ 
   
 }
 
 variable "privatedata_subnets" {
   description = "List of private data subnet IDs"
-  type        = list(string)
+ 
   
 }
 
@@ -69,7 +57,7 @@ variable "privatedata_subnets" {
 
 variable "nat-gw" {
   description = "List of NAT Gateways."
-  type        = list(string)
+
   
 }
 
