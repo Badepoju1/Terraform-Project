@@ -50,7 +50,7 @@ resource "aws_iam_role_policy_attachment" "bade_bucket_policy" {
 
 resource "aws_iam_instance_profile" "bade_profile" {
   name = "bade-profile"
-  role = aws_iam_role.ec2_role.name
+  role = aws_iam_role.app_ec2_role.name
 }
 
 
